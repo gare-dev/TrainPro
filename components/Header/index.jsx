@@ -25,7 +25,14 @@ export default function Header() {
           </button>
         </div>
 
-        <h2 className={styles.navText}>Cadastrar um treino</h2>
+        <h2
+          onClick={() => {
+            Router.push("/cadastrarTreino");
+          }}
+          className={styles.navText}
+        >
+          Cadastrar um treino
+        </h2>
         <h2 className={styles.navText}>Meus Treinos</h2>
 
         <Image
