@@ -1,4 +1,4 @@
-import styles from "@/styles/cadastrarTreino.module.scss";
+import styles from "../../src/styles/cadastrarTreino.module.scss";
 import Header from "../../components/Header";
 import { useState } from "react";
 

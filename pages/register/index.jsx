@@ -1,5 +1,5 @@
-import styles from "@/styles/register.module.scss";
-import Header from "@/../components/Header";
+import styles from "../../src/styles/register.module.scss";
+import Header from "../../components/Header";
 
 import router from "next/router";
 

@@ -1,5 +1,5 @@
-import styles from "@/styles/login.module.scss";
-import Header from "@/../components/Header";
+import styles from "../../src/styles/login.module.scss";
+import Header from "../../components/Header";
 
 import router from "next/router";
 

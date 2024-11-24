@@ -1,0 +1,182 @@
+.appDiv {
+  display: flex;
+  justify-content: center;
+  padding-top: 10%;
+}
+.container {
+  width: 40%;
+  height: auto;
+  border-radius: 10px;
+  background: #ff6f61;
+  box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.25);
+  padding-bottom: 30px;
+}
+
+.detalhe {
+  position: relative;
+  top: 30px;
+  width: 8px;
+  height: 65px;
+  left: -2px;
+  background-color: #2d4059;
+}
+
+.title {
+  position: relative;
+  top: -50px;
+  left: 30px;
+  color: #fff;
+  font-family: Koulen;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.titlesDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 50px;
+}
+
+.titles {
+  color: #fff;
+  font-family: Koulen;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.treinoBox {
+  width: 95%;
+  height: 80px;
+  border-radius: 10px;
+  background-color: #2d4059;
+  display: flex;
+  justify-content: space-between;
+}
+
+.treinosDiv {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.trainName {
+  color: #fff;
+  font-family: Mako;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-left: 10px;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 95px;
+  padding-right: 30px;
+  height: 100%;
+  align-items: center;
+}
+
+.infosText {
+  color: #fff;
+  font-family: Mako;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding-left: 10px;
+  text-align: center;
+}
+
+.popUpMainDiv {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+  background-color: black;
+  width: 50%;
+  height: 50%;
+}
+
+.inputExDiv {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.exInput {
+  width: 260px;
+  height: 30px;
+  color: #000000;
+  font-family: Mako;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border: 0;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.exMainDiv {
+  display: flex;
+  flex: 1 1 calc(50% - 20px);
+  box-sizing: border-box;
+  flex-direction: row;
+  padding: 10px;
+  justify-content: center;
+  gap: 10px;
+}
+
+.textEx {
+  font-family: Mako;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  color: white;
+  line-height: normal;
+}
+
+.exerciciosDiv {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.informacoesDiv {
+  height: auto;
+  width: auto;
+  background-color: #ff6f61;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.inputsInfoDiv {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.inputInfos {
+  width: 170px;
+  height: 25px;
+  border: 0;
+  border-radius: 3px;
+  padding-left: 5px;
+  text-align: center;
+}

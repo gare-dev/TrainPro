@@ -1,4 +1,4 @@
-import styles from "@/styles/header.module.scss";
+import styles from "../../src/styles/header.module.scss";
 import Image from "next/image";
 import Router from "next/router";
 
@@ -33,7 +33,14 @@ export default function Header() {
         >
           Cadastrar um treino
         </h2>
-        <h2 className={styles.navText}>Meus Treinos</h2>
+        <h2
+          onClick={() => {
+            Router.push("/meusTreinos");
+          }}
+          className={styles.navText}
+        >
+          Meus Treinos
+        </h2>
 
         <Image
           className={styles.image}
@@ -42,6 +49,9 @@ export default function Header() {
           height={100}
           alt="Imagem"
           priority
+          onClick={() => {
+            Router.push("/");
+          }}
         />
       </div>
     </div>
