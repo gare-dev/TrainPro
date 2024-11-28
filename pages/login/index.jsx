@@ -2,8 +2,24 @@ import styles from "../../src/styles/login.module.scss";
 import Header from "../../components/Header";
 
 import router from "next/router";
+import { useState } from "react";
+import Api from "../../api";
 
 export default function Login() {
+  const [senha, setSenha] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = async () => {
+    try {
+      const response = await Api.login(email, senha);
+
+      if (response.data.email != "") {
+        localStorage.setItem("email", response.data.email);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <div>
       <Header />
@@ -21,7 +37,8 @@ export default function Login() {
               className={styles.input}
               type="text"
               name="email"
-              id=""
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div>
@@ -30,7 +47,8 @@ export default function Login() {
               className={styles.input}
               type="text"
               name="senha"
-              id=""
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
             />
           </div>
         </div>
@@ -38,7 +56,9 @@ export default function Login() {
         <div
           style={{ display: "flex", justifyContent: "center", paddingTop: 20 }}
         >
-          <button className={styles.buttonCriar}>ENTRAR</button>
+          <button onClick={handleSubmit} className={styles.buttonCriar}>
+            ENTRAR
+          </button>
         </div>
 
         <div className={styles.criarContaDiv}>

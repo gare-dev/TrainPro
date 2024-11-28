@@ -1,9 +1,25 @@
 import styles from "../../src/styles/register.module.scss";
 import Header from "../../components/Header";
+import Api from "../../api/index";
 
 import router from "next/router";
+import { use, useState } from "react";
 
 export default function Register() {
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [nome, setNome] = useState("");
+
+  const handleSubmit = async () => {
+    try {
+      const response = await Api.cadastrar(email, senha, nome);
+
+      router.push("/login");
+      console.log(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <div>
       <Header />
@@ -22,6 +38,8 @@ export default function Register() {
               type="text"
               name="email"
               id=""
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
             />
           </div>
           <div>
@@ -31,6 +49,8 @@ export default function Register() {
               type="text"
               name="email"
               id=""
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div>
@@ -40,6 +60,8 @@ export default function Register() {
               type="text"
               name="senha"
               id=""
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
             />
           </div>
         </div>
@@ -47,7 +69,9 @@ export default function Register() {
         <div
           style={{ display: "flex", justifyContent: "center", paddingTop: 20 }}
         >
-          <button className={styles.buttonCriar}>CRIAR CONTA</button>
+          <button onClick={handleSubmit} className={styles.buttonCriar}>
+            CRIAR CONTA
+          </button>
         </div>
 
         <div className={styles.criarContaDiv}>

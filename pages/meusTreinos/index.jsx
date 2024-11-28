@@ -1,61 +1,79 @@
 import styles from "../../src/styles/meusTreinos.module.scss";
 import Header from "../../components/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Api from "../../api";
 
 export default function MeusTreinos() {
-  const treinos = [
-    {
-      id: 1,
-      nome: "Treino do cbum",
-      categoria: "A",
-      series: 7,
-      data: "10/12",
-      exercicio: [
-        {
-          nome: "Supino Reto",
-          reps: 15,
-          kgs: 30,
-        },
-        {
-          nome: "Agachamento Livre",
-          reps: 12,
-          kgs: 40,
-        },
-        {
-          nome: "Rosca Direta",
-          reps: 10,
-          kgs: 20,
-        },
-        {
-          nome: "Pull Down",
-          reps: 12,
-          kgs: 25,
-        },
-        {
-          nome: "Leg Press",
-          reps: 10,
-          kgs: 100,
-        },
-        {
-          nome: "Desenvolvimento com Halteres",
-          reps: 8,
-          kgs: 15,
-        },
-        {
-          nome: "Panturrilha Sentado",
-          reps: 20,
-          kgs: 30,
-        },
-      ],
-    },
-  ];
+  const [treinoss, setTreinos] = useState([]);
+  const [dados, setDadosTransformados] = useState([]);
+  let processedData = [];
+
+  function transformarDados(dados) {
+    let treinos = [];
+    let treinoAtual = null;
+
+    dados.forEach((item) => {
+      if (!treinoAtual || treinoAtual.nome !== item.nome) {
+        if (treinoAtual) {
+          treinos.push(treinoAtual);
+        }
+
+        treinoAtual = {
+          id: item.id,
+          nome: item.nome,
+          categoria: item.categoria,
+          series: item.series,
+          data: item.data,
+          exercicio: [],
+        };
+      }
+
+      treinoAtual.exercicio.push({
+        nome: item.exercicio,
+        reps: item.repts,
+        kgs: item.kgs,
+      });
+    });
+
+    // No final, adiciona o último treino ao array
+    if (treinoAtual) {
+      treinos.push(treinoAtual);
+    }
+
+    setDadosTransformados(treinos);
+    console.log(treinos);
+  }
+
+  const callApi = async () => {
+    try {
+      const response = await Api.meusTreinos(localStorage.getItem("email"));
+
+      transformarDados(response.data.json);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    callApi();
+  }, []);
+
+  // useEffect(() => {
+  //   transformarDados(treinoss);
+  //   console.log(treinoss);
+  // }, [treinoss]);
+
+  // useEffect(() => {
+  //   console.log(dados);
+  // }, [dados]);
+
   const [treinoSelecionado, setTreinoSelecionado] = useState(null);
 
   const handleClick = (treino) => {
     setTreinoSelecionado(treino);
   };
   const renderizarItens = () => {
-    return treinos.map((treino) => (
+    return dados.map((treino) => (
       <div
         key={treino.nome}
         onClick={() => handleClick(treino)}
@@ -160,7 +178,7 @@ export default function MeusTreinos() {
               </div>
             </div>
 
-            {Array.from({ length: treinoSelecionado.series }).map(
+            {Array.from({ length: treinoSelecionado.exercicio.length }).map(
               (_, index) => (
                 <div className={styles.exMainDiv} key={index}>
                   <div className={styles.inputExDiv}>
