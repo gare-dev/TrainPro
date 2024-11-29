@@ -15,7 +15,7 @@ export default function Register() {
   const handleSubmit = async () => {
     try {
       const response = await Api.cadastrar(email, senha, nome);
-
+      console.log(response.data)
       localStorage.setItem("logged", true);
       localStorage.setItem("email", email);
       showAlert("Conta registrada com sucesso!", "success");
