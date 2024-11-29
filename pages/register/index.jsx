@@ -12,6 +12,7 @@ export default function Register() {
   const [nome, setNome] = useState("");
   const { showAlert } = useAlert();
 
+  
   const handleSubmit = async () => {
     try {
       const response = await Api.cadastrar(email, senha, nome);
