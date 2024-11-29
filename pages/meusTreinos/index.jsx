@@ -43,7 +43,7 @@ export default function MeusTreinos() {
     }
 
     setDadosTransformados(treinos);
-    console.log(treinos);
+
   }
 
   const callApi = async () => {

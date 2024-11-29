@@ -5,7 +5,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
   width: 281px;
   height: 430px;
   border-radius: 10px;
@@ -57,9 +57,10 @@
 }
 
 .input {
-  width: 220px;
+  width: 210px;
   height: 35px;
   border: 0;
+  padding-left: 10px;
   border-radius: 5px;
 }
 
@@ -102,12 +103,12 @@
   line-height: normal;
 }
 .subText {
-  color: rgb(61, 61, 255);
+  color: #2d4059;
   cursor: pointer;
-
+  font-weight: bold;
   font-family: Mako;
   font-size: 16px;
   font-style: normal;
-  font-weight: 500;
+  
   line-height: normal;
 }

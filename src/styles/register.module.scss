@@ -5,7 +5,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
   width: 281px;
   height: 480px;
   border-radius: 10px;
@@ -57,10 +57,11 @@
 }
 
 .input {
-  width: 220px;
+  width: 210px;
   height: 35px;
   border: 0;
   border-radius: 5px;
+  padding-left: 10px;
 }
 
 .buttonCriar {
@@ -102,12 +103,12 @@
   line-height: normal;
 }
 .subText {
-  color: rgb(61, 61, 255);
+  color: #2d4059;
   cursor: pointer;
 
   font-family: Mako;
   font-size: 16px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: bold;
   line-height: normal;
 }

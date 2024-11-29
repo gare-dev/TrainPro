@@ -17,9 +17,6 @@ export default function CadastrarTreino() {
   });
   let processedData = [];
 
-  useEffect(() => {
-    console.log(treino);
-  }, [treino]);
 
   const handleChangeExercicio = (index, field, value) => {
     const newExercicios = [...treino.exercicios];
@@ -52,7 +49,7 @@ export default function CadastrarTreino() {
           repts: +item.repts,
           kgs: +item.kgs,
         });
-        console.log(processedData);
+      
       }
     });
   }, [treino]);
@@ -121,6 +118,20 @@ export default function CadastrarTreino() {
         if (e.response?.data.code === "500") {
           showAlert(
             "Não foi possível adicionar o treino. Tente novamente mais tarde.",
+            "danger"
+          );
+          setTreino({
+            nome: "",
+            qtdEx: 6,
+            categoria: "",
+            data: "",
+            series: 0,
+            exercicios: Array(6).fill({ nome: "", repts: "", kgs: "" }),
+          });
+        }
+        if(e.response.data.code === "400"){
+          showAlert(
+            "Já existe um treino com esse mesmo nome.",
             "danger"
           );
           setTreino({

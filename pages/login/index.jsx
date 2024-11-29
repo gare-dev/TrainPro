@@ -10,6 +10,7 @@ export default function Login() {
   const [senha, setSenha] = useState("");
   const [email, setEmail] = useState("");
   const { showAlert } = useAlert();
+  
 
   const handleSubmit = async () => {
     try {
@@ -46,7 +47,7 @@ export default function Login() {
         <div className={styles.inputDiv}>
           <div>
             <input
-              placeholder="  Email"
+              placeholder="Email"
               className={styles.input}
               type="text"
               name="email"
@@ -56,10 +57,11 @@ export default function Login() {
           </div>
           <div>
             <input
-              placeholder="  Senha"
+              placeholder="Senha"
               className={styles.input}
-              type="text"
+              type="password"
               name="senha"
+              
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
             />

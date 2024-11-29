@@ -41,33 +41,33 @@ export default function Register() {
         <div className={styles.inputDiv}>
           <div>
             <input
-              placeholder="  Nome"
+              placeholder="Nome"
               className={styles.input}
               type="text"
               name="email"
-              id=""
+              
               value={nome}
               onChange={(e) => setNome(e.target.value)}
             />
           </div>
           <div>
             <input
-              placeholder="  Email"
+              placeholder="Email"
               className={styles.input}
               type="text"
               name="email"
-              id=""
+              
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div>
             <input
-              placeholder="  Senha"
+              placeholder="Senha"
               className={styles.input}
-              type="text"
+              type="password"
               name="senha"
-              id=""
+              
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
             />
