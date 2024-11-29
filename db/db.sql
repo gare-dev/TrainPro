@@ -21,19 +21,6 @@ CREATE TABLE treinos (
     FOREIGN KEY (usuario_id) REFERENCES usuarios(email) ON DELETE CASCADE
 );
 
-INSERT INTO usuarios (nome, email, senha)
-VALUES 
-('João Silva', 'joao.silva@email.com', 'senha_segura'),
-('Guilherme', 'gare@gmail.com', '123');
-
-insert into treinos (usuario_id, nome, categoria, series, data, exercicio, repts, kgs) values 
-("gare@gmail.com", "Treino do CBUM", "A", 30, "10/10/2024", "Exercicios X", 20, 30),
-("gare@gmail.com", "Treino do CBUM", "A", 30, "10/10/2024", "Exercicios Y", 10, 30),
-("gare@gmail.com", "Treino do CBUM", "A", 50, "10/10/2024", "Exercicios Z", 50, 30),
-("gare@gmail.com", "Treino do CBUM", "A", 23, "10/10/2024", "Exercicios A", 320, 30),
-("gare@gmail.com", "Treino do CBUM", "A", 70, "10/10/2024", "Exercicios B", 29, 23),
-("gare@gmail.com", "Treino do CBUM", "A", 20, "10/10/2024", "Exercicios C", 90, 10),
-("gare@gmail.com", "Treino do CBUM", "A", 26, "10/10/2024", "Exercicios D", 20, 30);
 
 select * from treinos;
 select * from usuarios;
