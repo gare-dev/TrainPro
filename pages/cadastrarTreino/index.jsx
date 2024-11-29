@@ -17,7 +17,6 @@ export default function CadastrarTreino() {
   });
   let processedData = [];
 
-
   const handleChangeExercicio = (index, field, value) => {
     const newExercicios = [...treino.exercicios];
     newExercicios[index] = { ...newExercicios[index], [field]: value };
@@ -49,7 +48,6 @@ export default function CadastrarTreino() {
           repts: +item.repts,
           kgs: +item.kgs,
         });
-      
       }
     });
   }, [treino]);
@@ -129,11 +127,8 @@ export default function CadastrarTreino() {
             exercicios: Array(6).fill({ nome: "", repts: "", kgs: "" }),
           });
         }
-        if(e.response.data.code === "400"){
-          showAlert(
-            "Já existe um treino com esse mesmo nome.",
-            "danger"
-          );
+        if (e.response.data.code === "400") {
+          showAlert("Já existe um treino com esse mesmo nome.", "danger");
           setTreino({
             nome: "",
             qtdEx: 6,
@@ -228,15 +223,42 @@ export default function CadastrarTreino() {
             <div className={styles.inputsInfoDiv}>
               <label className={styles.infosText}>Data</label>
               <input
-                onChange={(e) =>
+                onChange={(e) => {
+                  let value = e.target.value.replace(/\D/g, "");
+
+                  if (value.length > 8) value = value.slice(0, 8);
+                  if (value.length > 4) {
+                    value = `${value.slice(0, 2)}/${value.slice(
+                      2,
+                      4
+                    )}/${value.slice(4)}`;
+                  } else if (value.length > 2) {
+                    value = `${value.slice(0, 2)}/${value.slice(2)}`;
+                  }
+
                   setTreino((treino) => ({
                     ...treino,
-                    data: e.target.value,
-                  }))
-                }
+                    data: value,
+                  }));
+                }}
+                onKeyDown={(e) => {
+                  const allowedKeys = [
+                    "Backspace",
+                    "Delete",
+                    "ArrowLeft",
+                    "ArrowRight",
+                    "Tab",
+                  ];
+                  if (allowedKeys.includes(e.key)) return;
+
+                  if (!/^\d$/.test(e.key)) {
+                    e.preventDefault();
+                  }
+                }}
                 className={styles.inputInfos}
                 type="text"
                 value={treino.data}
+                maxLength={10}
               />
             </div>
           </div>

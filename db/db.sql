@@ -14,7 +14,7 @@ CREATE TABLE treinos (
     nome VARCHAR(255),
     categoria CHAR(1),
     series INT,
-    data VARCHAR(20),
+    data VARCHAR(10),
     exercicio VARCHAR(255),
     repts	  INT,
     kgs	      INT,

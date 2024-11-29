@@ -4,7 +4,7 @@ import router from "next/router";
 
 export default function Index() {
   return (
-    <div>
+    <div style={{ paddingBottom: "0px" }}>
       <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -65,38 +65,39 @@ export default function Index() {
       <div class={styles["container-right"]}>
         <div className={styles["trein-lista"]}>
           <div className={styles["normal"]}>
-            <h5>Praticide</h5>
+            <h5 className={styles.textBox}>Praticide</h5>
             <p>
-              organizaremos o seu treino que encaixe na sua rotina. Entendemos
+              Organizaremos o seu treino que encaixe na sua rotina. Entendemos
               que a correria do dia a dia rouba o seu tempo, mas agora, não
               mais!
             </p>
           </div>
           <div className={styles.normal}>
-            <h5>Organização</h5>
+            <h5 className={styles.textBox}>Organização</h5>
             <p>
-              fundamental para o sucesso. separe por categoria, por parte do
-              corpo, da maneira que quiser! organizaremos e iremos lhe retornar
+              Fundamental para o sucesso. Separe por categoria, por parte do
+              corpo, da maneira que quiser! Organizaremos e iremos lhe retornar
               do jeito que pedir.
             </p>
           </div>
           <div className={styles.normal}>
-            <h5>Evolução</h5>
+            <h5 className={styles.textBox}>Evolução</h5>
             <p>
-              É o que você procura, e é o que terá! com o nosso sistema de
+              É o que você procura, e é o que terá! Com o nosso sistema de
               armazenamento de dados, otimizaremos muito mais o tempo do seu
               treino.
             </p>
           </div>
           <div className={styles.normal}>
-            <h5>Resultados</h5>
+            <h5 className={styles.textBox}>Resultados</h5>
             <p>
-              veja sua Evolução com o decorrer do tempo. compare o antes e
+              Veja sua Evolução com o decorrer do tempo. Compare o antes e
               depois, e veja quanto o TrainPro pode ser útil na sua vida.
             </p>
           </div>
         </div>
       </div>
+      <div className={styles.footer}></div>
     </div>
   );
 }

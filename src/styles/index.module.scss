@@ -59,8 +59,8 @@
 
 .trein-lista {
   list-style: none;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+
   margin: 0;
 }
 
@@ -77,7 +77,7 @@
 }
 
 .normal:hover {
-  height: 10rem;
+  height: 10px;
   width: 10rem;
   transition: 1s ease-in-out;
 }
@@ -191,7 +191,7 @@
   background-color: transparent;
   background-color: rgb(252, 97, 77);
   color: white;
-  border-radius: 0.3rem;
+
   font-weight: 300;
   transition: 0.4s ease-in-out;
   font-style: italic;
@@ -253,11 +253,10 @@
 
   .normal {
     border: 2px solid;
-
     text-align: center;
     box-shadow: 3px 3px 1px black;
     background-color: rgb(252, 97, 77);
-    transition: 1s ease-in-out;
+    transition: 0.5s ease-in-out;
 
     p {
       font-weight: 500;
@@ -265,12 +264,27 @@
       margin-top: 0.5rem;
       font-size: 1rem;
       transition: 3s ease-in-out;
+      text-align: justify;
     }
   }
 
   h5 {
-    font-weight: 300;
+    font-weight: 500;
     color: white;
     font-size: 1.5rem;
   }
+}
+
+.normal:hover {
+  box-shadow: 10px 10px 1px black;
+  transform: translate(-5%, -5%);
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+  height: 70px;
+  background-color: #ff6f61;
+  width: 100%;
+  margin-top: 100px;
 }

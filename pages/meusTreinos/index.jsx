@@ -43,7 +43,6 @@ export default function MeusTreinos() {
     }
 
     setDadosTransformados(treinos);
-
   }
 
   const callApi = async () => {
@@ -83,7 +82,7 @@ export default function MeusTreinos() {
         <div className={styles.stats}>
           <h2 className={styles.infosText}>{treino.categoria}</h2>
           <h2 className={styles.infosText}>{treino.series}</h2>
-          <h2 className={styles.infosText}>{treino.data}</h2>
+          <h2 className={styles.infosText}>{treino.data.substring(0, 5)}</h2>
         </div>
       </div>
     ));
