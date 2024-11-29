@@ -12,11 +12,14 @@ export default function Register() {
   const [nome, setNome] = useState("");
   const { showAlert } = useAlert();
 
-  
   const handleSubmit = async () => {
+    if (email === "" || senha === "" || nome === "") {
+      showAlert("Preencha todos os campos.", "danger");
+      return;
+    }
     try {
       const response = await Api.cadastrar(email, senha, nome);
-      console.log(response.data)
+      console.log(response.data);
       localStorage.setItem("logged", true);
       localStorage.setItem("email", email);
       showAlert("Conta registrada com sucesso!", "success");
@@ -46,7 +49,6 @@ export default function Register() {
               className={styles.input}
               type="text"
               name="email"
-              
               value={nome}
               onChange={(e) => setNome(e.target.value)}
             />
@@ -57,7 +59,6 @@ export default function Register() {
               className={styles.input}
               type="text"
               name="email"
-              
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -68,7 +69,6 @@ export default function Register() {
               className={styles.input}
               type="password"
               name="senha"
-              
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
             />

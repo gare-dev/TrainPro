@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Api from "../../api";
 import router from "next/router";
 import useAlert from "../../hooks/useAlert";
+import { AxiosError } from "axios";
 
 export default function MeusTreinos() {
   const [treinoss, setTreinos] = useState([]);
@@ -70,6 +71,13 @@ export default function MeusTreinos() {
     setTreinoSelecionado(treino);
   };
   const renderizarItens = () => {
+    if (dados.length === 0) {
+      return (
+        <p style={{ paddingTop: "50px", color: "white" }}>
+          Nenhum treino disponível
+        </p>
+      );
+    }
     return dados.map((treino) => (
       <div
         key={treino.nome}
@@ -91,6 +99,31 @@ export default function MeusTreinos() {
   const fecharPopup = () => {
     setTreinoSelecionado(null);
   };
+
+  async function excluirTreino() {
+    try {
+      const response = await Api.excluirTreino(
+        localStorage.getItem("email"),
+        treinoSelecionado.nome
+      );
+
+      if (response.data.code === "201") {
+        fecharPopup();
+        await callApi();
+        showAlert("Treino excluído com sucesso!", "success");
+      }
+
+      if (e.response?.data.code === "500") {
+        showAlert("Não foi possível excluir o treino.", "danger");
+      }
+    } catch (e) {
+      if (e instanceof AxiosError) {
+        if (e.response?.data.code === "500") {
+          showAlert("Não foi possível excluir o treino.", "danger");
+        }
+      }
+    }
+  }
 
   return (
     <div>
@@ -230,6 +263,21 @@ export default function MeusTreinos() {
               onClick={fecharPopup}
             >
               Fechar
+            </button>
+            <button
+              style={{
+                backgroundColor: "#ce4234",
+                color: "white",
+                border: "none",
+                borderRadius: "5px",
+                padding: "10px 20px",
+                cursor: "pointer",
+                marginTop: "10px",
+                marginLeft: 10,
+              }}
+              onClick={excluirTreino}
+            >
+              Excluir
             </button>
           </div>
         </div>

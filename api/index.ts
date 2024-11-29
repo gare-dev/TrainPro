@@ -66,6 +66,18 @@ class _Api {
       console.log(e);
     }
   }
+
+  public async excluirTreino(email: string, nome: string) {
+    try {
+      const response = await this._instance.post("/excluirTreino", {
+        nome,
+        email,
+      });
+      return response;
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 const Api = new _Api("http://localhost:3002/");
 export default Api;

@@ -10,9 +10,12 @@ export default function Login() {
   const [senha, setSenha] = useState("");
   const [email, setEmail] = useState("");
   const { showAlert } = useAlert();
-  
 
   const handleSubmit = async () => {
+    if (email === "" || senha === "") {
+      showAlert("Preencha todos os campos.", "danger");
+      return;
+    }
     try {
       const response = await Api.login(email, senha);
 
@@ -61,7 +64,6 @@ export default function Login() {
               className={styles.input}
               type="password"
               name="senha"
-              
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
             />

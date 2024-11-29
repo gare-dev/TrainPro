@@ -100,11 +100,12 @@ export default function CadastrarTreino() {
   const handleSubmit = async () => {
     try {
       const response = await Api.cadastroTreino(processedData);
+
       if (response.data.code === "200") {
         showAlert("Treino cadastrado com sucesso!", "success");
         setTreino({
           nome: "",
-          qtdEx: 6,
+          qtdEx: treino.qtdEx,
           categoria: "",
           data: "",
           series: 0,
@@ -150,7 +151,7 @@ export default function CadastrarTreino() {
           <h2 className={styles.title}>cadastrar treino</h2>
           <div className={styles.informacoesDiv}>
             <div className={styles.inputsInfoDiv}>
-              <label className={styles.infosText}>Nome</label>
+              <label className={styles.infosText}>Nome*</label>
               <input
                 value={treino.nome}
                 className={styles.inputInfos}
@@ -204,7 +205,7 @@ export default function CadastrarTreino() {
             </div>
 
             <div className={styles.inputsInfoDiv}>
-              <label className={styles.infosText}>Divisão do Treino</label>
+              <label className={styles.infosText}>Divisão do Treino*</label>
               <input
                 style={{ textAlign: "center" }}
                 onChange={(e) =>
@@ -221,7 +222,7 @@ export default function CadastrarTreino() {
             </div>
 
             <div className={styles.inputsInfoDiv}>
-              <label className={styles.infosText}>Data</label>
+              <label className={styles.infosText}>Data*</label>
               <input
                 onChange={(e) => {
                   let value = e.target.value.replace(/\D/g, "");
