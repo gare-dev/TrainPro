@@ -1,25 +1,38 @@
 import styles from "../../src/styles/login.module.scss";
 import Header from "../../components/Header";
-
-import router from "next/router";
 import { useState } from "react";
+import router from "next/router";
 import Api from "../../api";
+import { AxiosError } from "axios";
+import useAlert from "../../hooks/useAlert";
 
 export default function Login() {
   const [senha, setSenha] = useState("");
   const [email, setEmail] = useState("");
+  const { showAlert } = useAlert();
 
   const handleSubmit = async () => {
     try {
       const response = await Api.login(email, senha);
 
-      if (response.data.email != "") {
-        localStorage.setItem("email", response.data.email);
+      if (response.data.code === "200") {
+        localStorage.setItem("logged", true);
+        localStorage.setItem("email", email);
+        showAlert(`Bem vindo ${response.data.nome}!`, "success");
+
+        router.push("/");
       }
     } catch (e) {
-      console.log(e);
+      if (e instanceof AxiosError) {
+        if (e.response?.data.code === "401") {
+          showAlert("Usuário e/ou senhas incorretos.", "danger");
+          setSenha("");
+          setEmail("");
+        }
+      }
     }
   };
+
   return (
     <div>
       <Header />

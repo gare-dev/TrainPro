@@ -1,28 +1,36 @@
 import styles from "../../src/styles/register.module.scss";
 import Header from "../../components/Header";
 import Api from "../../api/index";
-
+import { AxiosError } from "axios";
 import router from "next/router";
-import { use, useState } from "react";
+import { useState } from "react";
+import useAlert from "../../hooks/useAlert";
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [nome, setNome] = useState("");
+  const { showAlert } = useAlert();
 
   const handleSubmit = async () => {
     try {
       const response = await Api.cadastrar(email, senha, nome);
 
-      router.push("/login");
-      console.log(response.data);
+      localStorage.setItem("logged", true);
+      localStorage.setItem("email", email);
+      showAlert("Conta registrada com sucesso!", "success");
+      router.push("/");
     } catch (e) {
-      console.log(e);
+      if (e instanceof AxiosError) {
+        if (e.response?.data.code === "409") {
+          showAlert("Uma conta com esse email já está registrada.", "danger");
+        }
+      }
     }
   };
   return (
     <div>
-      <Header />
+      <Header logged={false} />
       <div className={styles.container}>
         <div className={styles.detalhe}></div>
         <h2 className={styles.title}>REGISTRE-Se</h2>

@@ -2,8 +2,11 @@ import styles from "../../src/styles/cadastrarTreino.module.scss";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import Api from "../../api";
+import { AxiosError } from "axios";
+import useAlert from "../../hooks/useAlert";
 
 export default function CadastrarTreino() {
+  const { showAlert } = useAlert();
   const [treino, setTreino] = useState({
     nome: "",
     qtdEx: 6,
@@ -102,9 +105,34 @@ export default function CadastrarTreino() {
   const handleSubmit = async () => {
     try {
       const response = await Api.cadastroTreino(processedData);
-      console.log(response);
+      if (response.data.code === "200") {
+        showAlert("Treino cadastrado com sucesso!", "success");
+        setTreino({
+          nome: "",
+          qtdEx: 6,
+          categoria: "",
+          data: "",
+          series: 0,
+          exercicios: Array(6).fill({ nome: "", repts: "", kgs: "" }),
+        });
+      }
     } catch (e) {
-      console.log(e);
+      if (e instanceof AxiosError) {
+        if (e.response?.data.code === "500") {
+          showAlert(
+            "Não foi possível adicionar o treino. Tente novamente mais tarde.",
+            "danger"
+          );
+          setTreino({
+            nome: "",
+            qtdEx: 6,
+            categoria: "",
+            data: "",
+            series: 0,
+            exercicios: Array(6).fill({ nome: "", repts: "", kgs: "" }),
+          });
+        }
+      }
     }
   };
   return (

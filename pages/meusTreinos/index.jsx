@@ -2,10 +2,13 @@ import styles from "../../src/styles/meusTreinos.module.scss";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 import Api from "../../api";
+import router from "next/router";
+import useAlert from "../../hooks/useAlert";
 
 export default function MeusTreinos() {
   const [treinoss, setTreinos] = useState([]);
   const [dados, setDadosTransformados] = useState([]);
+  const { showAlert } = useAlert();
   let processedData = [];
 
   function transformarDados(dados) {
@@ -35,7 +38,6 @@ export default function MeusTreinos() {
       });
     });
 
-    // No final, adiciona o último treino ao array
     if (treinoAtual) {
       treinos.push(treinoAtual);
     }
@@ -46,6 +48,11 @@ export default function MeusTreinos() {
 
   const callApi = async () => {
     try {
+      if (localStorage.getItem("email") === "") {
+        showAlert("Entre na sua conta para ter acesso a essa tela.", "danger");
+        router.push("/");
+        return;
+      }
       const response = await Api.meusTreinos(localStorage.getItem("email"));
 
       transformarDados(response.data.json);
@@ -57,15 +64,6 @@ export default function MeusTreinos() {
   useEffect(() => {
     callApi();
   }, []);
-
-  // useEffect(() => {
-  //   transformarDados(treinoss);
-  //   console.log(treinoss);
-  // }, [treinoss]);
-
-  // useEffect(() => {
-  //   console.log(dados);
-  // }, [dados]);
 
   const [treinoSelecionado, setTreinoSelecionado] = useState(null);
 
